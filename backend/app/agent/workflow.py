@@ -115,3 +115,5 @@ We reviewed your project requirements for **{title}**. Our objective is to deliv
             "price_estimate": total_estimate,
             "audio_path": str(audio_file) if audio_file else None
         }
+
+# Safe fallback for zero matching items
