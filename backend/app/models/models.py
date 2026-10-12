@@ -62,3 +62,5 @@ class FreelancerProfile(Base):
     hourly_rate = Column(Float, default=125.0)
     skills = Column(Text, nullable=True)  # comma separated or json
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+# Indexed relationships for performance
