@@ -82,3 +82,5 @@ class PortfolioVectorStore:
             return [r.payload for r in records if r.payload]
         except Exception:
             return []
+
+# Vector collection index verification
