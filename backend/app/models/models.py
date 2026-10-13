@@ -64,3 +64,5 @@ class FreelancerProfile(Base):
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 # Indexed relationships for performance
+
+# Cascade deletion definitions
