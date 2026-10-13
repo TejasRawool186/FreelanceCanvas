@@ -37,3 +37,5 @@ async def root():
         "status": "online",
         "docs_url": "/docs"
     }
+
+# Standardized error response handler
