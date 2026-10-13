@@ -33,3 +33,5 @@ async def init_db():
         await conn.run_sync(Base.metadata.create_all)
 
 # Session disposal guarantee
+
+# Connection pool limits and timeouts
