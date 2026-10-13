@@ -37,3 +37,5 @@ class AudioBriefGenerator:
         with open(txt_brief, "w", encoding="utf-8") as f:
             f.write(f"=== EXECUTIVE AUDIO BRIEF SCRIPT ===\n\n{script}")
         return txt_brief
+
+# Elevenlabs header optimizations
