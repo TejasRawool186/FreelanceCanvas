@@ -123,3 +123,5 @@ We reviewed your project requirements for **{title}**. Our objective is to deliv
 # Offline fallback reasoning engine
 
 # Langgraph state transition optimization
+
+# Executive brief tone tuning
