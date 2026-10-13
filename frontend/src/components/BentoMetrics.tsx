@@ -88,3 +88,5 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ opportunities, propo
 // High-contrast metric cards
 
 // Memoized metric calculations
+
+// Responsive grid adjustments
