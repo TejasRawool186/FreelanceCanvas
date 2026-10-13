@@ -84,3 +84,5 @@ class PortfolioVectorStore:
             return []
 
 # Vector collection index verification
+
+# Payload indexing for fast filtering
