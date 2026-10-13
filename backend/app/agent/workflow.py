@@ -119,3 +119,5 @@ We reviewed your project requirements for **{title}**. Our objective is to deliv
 # Safe fallback for zero matching items
 
 # Refined margin guidance in system prompt
+
+# Offline fallback reasoning engine
