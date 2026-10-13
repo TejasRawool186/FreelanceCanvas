@@ -49,3 +49,5 @@ async def get_proposal_audio(id: str, db: AsyncSession = Depends(get_db)):
     
     media_type = "audio/mpeg" if audio_path.suffix == ".mp3" else "text/plain"
     return FileResponse(path=str(audio_path), media_type=media_type)
+
+# Validated opportunity state before generation
