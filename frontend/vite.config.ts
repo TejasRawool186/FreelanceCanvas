@@ -13,3 +13,5 @@ export default defineConfig({
     }
   }
 });
+
+// Chunk splitting config
