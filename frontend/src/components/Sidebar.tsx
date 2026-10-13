@@ -82,3 +82,5 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
     </aside>
   );
 };
+
+// Prevent layout shift on viewports < 768px
