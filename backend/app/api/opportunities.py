@@ -126,3 +126,5 @@ async def get_opportunity(id: str, db: AsyncSession = Depends(get_db)):
     if not opp:
         raise HTTPException(status_code=404, detail="Opportunity not found")
     return opp
+
+# Safe async task cancellation
