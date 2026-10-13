@@ -121,3 +121,5 @@ We reviewed your project requirements for **{title}**. Our objective is to deliv
 # Refined margin guidance in system prompt
 
 # Offline fallback reasoning engine
+
+# Langgraph state transition optimization
