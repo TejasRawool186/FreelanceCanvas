@@ -139,3 +139,5 @@ By tailoring the existing LangGraph pipeline, Temporal durability, Qdrant vector
    - Create a persistent `freelancer_profile` data directory in `data/freelancer/`.
    - Add a `Portfolio RAG` ingestion script to index user past work into Qdrant.
    - Build a `ProposalNode` in the LangGraph agent to generate proposal artifacts alongside standard research reports.
+
+<!-- API endpoints reference updated -->
