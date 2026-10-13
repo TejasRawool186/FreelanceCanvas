@@ -185,3 +185,5 @@ export const ProposalDetail: React.FC<ProposalDetailProps> = ({ proposal, onPlay
 // PDF export handler
 
 // Clipboard copy button handler
+
+// Content sanitization guard
