@@ -84,3 +84,5 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ opportunities, propo
     </div>
   );
 };
+
+// High-contrast metric cards
