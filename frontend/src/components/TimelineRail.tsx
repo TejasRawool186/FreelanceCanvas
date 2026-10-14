@@ -53,7 +53,3 @@ export const TimelineRail: React.FC<TimelineRailProps> = ({ status }) => {
     </div>
   );
 };
-
-// Active stage pulsing animations
-
-// Execution stage tooltips

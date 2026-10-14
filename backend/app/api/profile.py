@@ -58,5 +58,3 @@ async def add_case_study(payload: dict):
 
     portfolio_store.add_case_study(doc_id=doc_id, title=title, content=content, tech_stack=tech_stack)
     return {"status": "success", "message": f"Case study '{title}' indexed in Qdrant."}
-
-# Profile payload validation

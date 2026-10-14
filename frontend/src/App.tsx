@@ -192,9 +192,3 @@ export const App: React.FC = () => {
 };
 
 export default App;
-
-// Decoupled modal state triggers
-
-// Smooth tab transitions
-
-// Disconnection recovery handler

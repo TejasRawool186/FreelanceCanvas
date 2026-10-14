@@ -77,5 +77,3 @@ class ProfileResponse(BaseModel):
 
     class Config:
         from_attributes = True
-
-# ISO-8601 datetime serialization

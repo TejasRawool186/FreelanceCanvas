@@ -181,9 +181,3 @@ export const ProposalDetail: React.FC<ProposalDetailProps> = ({ proposal, onPlay
     </div>
   );
 };
-
-// PDF export handler
-
-// Clipboard copy button handler
-
-// Content sanitization guard

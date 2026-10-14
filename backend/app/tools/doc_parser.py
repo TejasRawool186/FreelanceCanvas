@@ -29,7 +29,3 @@ class DocumentParser:
                 return f"[Text File Error: {str(e)}]"
                 
         return ""
-
-# UTF-8 and latin-1 encoding fallbacks
-
-# Clean chunk metadata formatting

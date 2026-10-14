@@ -122,5 +122,3 @@ export const NewBriefModal: React.FC<NewBriefModalProps> = ({ isOpen, onClose, o
     </div>
   );
 };
-
-// Upload progress spinner

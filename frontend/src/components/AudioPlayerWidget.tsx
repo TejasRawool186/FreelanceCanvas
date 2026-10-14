@@ -48,7 +48,3 @@ export const AudioPlayerWidget: React.FC<AudioPlayerWidgetProps> = ({ audioPath,
     </div>
   );
 };
-
-// Safe audio loading handler
-
-// Audio scrubber styling
