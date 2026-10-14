@@ -39,3 +39,5 @@ async def root():
     }
 
 # Standardized error response handler
+
+# Model pre-warming call
