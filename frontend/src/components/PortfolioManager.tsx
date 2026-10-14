@@ -108,3 +108,5 @@ export const PortfolioManager: React.FC<PortfolioManagerProps> = ({ profile, onU
     </div>
   );
 };
+
+// Portfolio tag chip styles
