@@ -245,3 +245,33 @@ input, textarea, select {
   20%  { transform: translate(25px, 35px); }
   55%  { transform: translate(-30px, 20px); }
   80%  { transform: translate(15px, -25px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+.anim-cursor-alex {
+  animation: cursorAlexPath 7s ease-in-out infinite;
+}
+
+.anim-cursor-taylor {
+  animation: cursorTaylorPath 8.5s ease-in-out infinite;
+}
+
+.anim-cursor-sam {
+  animation: cursorSamPath 6.2s ease-in-out infinite;
+}
+
+/* Hand-drawn Underline effect */
+.hand-underline {
+  position: relative;
+  display: inline-block;
+}
+.hand-underline::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  bottom: 0px;
+  width: 104%;
+  height: 4px;
+  background: #0090FF;
+  border-radius: 4px;
+}
