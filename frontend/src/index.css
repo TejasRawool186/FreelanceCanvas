@@ -173,3 +173,27 @@ input, textarea, select {
   position: relative;
   border: 2px solid #0090FF;
   border-radius: 4px;
+}
+
+.canvas-bounding-box::before,
+.canvas-bounding-box::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #0090FF;
+  border: 1px solid #FFF;
+}
+.canvas-bounding-box::before { top: -5px; left: -5px; }
+.canvas-bounding-box::after { bottom: -5px; right: -5px; }
+
+/* Sticky Notes */
+.sticky-note {
+  border-radius: 4px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+  position: relative;
+}
+
+.sticky-note:hover {
+  transform: scale(1.04) rotate(0deg) !important;
