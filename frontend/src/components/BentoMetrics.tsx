@@ -6,9 +6,10 @@ interface BentoMetricsProps {
   opportunities: Opportunity[];
   proposals: Proposal[];
   profile: FreelancerProfile | null;
+  caseStudyCount: number;
 }
 
-export const BentoMetrics: React.FC<BentoMetricsProps> = ({ opportunities, proposals, profile }) => {
+export const BentoMetrics: React.FC<BentoMetricsProps> = ({ opportunities, proposals, profile, caseStudyCount }) => {
   const cards = [
     {
       title: 'Active Briefs',
@@ -36,8 +37,8 @@ export const BentoMetrics: React.FC<BentoMetricsProps> = ({ opportunities, propo
     },
     {
       title: 'Matched Vector Portfolio',
-      value: '3 Case Studies',
-      sub: 'Qdrant semantic index',
+      value: `${caseStudyCount} ${caseStudyCount === 1 ? 'Case Study' : 'Case Studies'}`,
+      sub: caseStudyCount > 0 ? 'Indexed in local Qdrant memory' : 'Add past work in Portfolio tab',
       bg: 'var(--pastel-blue)',
       text: 'var(--pastel-blue-dark)',
       icon: Layers
