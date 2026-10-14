@@ -197,3 +197,27 @@ input, textarea, select {
 
 .sticky-note:hover {
   transform: scale(1.04) rotate(0deg) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  z-index: 20;
+}
+
+/* Floating Animations */
+@keyframes auraFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-8px) rotate(var(--rot, 0deg));
+  }
+}
+
+.anim-float {
+  animation: auraFloat 4.2s ease-in-out infinite;
+}
+
+.anim-float-delayed {
+  animation: auraFloat 4.8s ease-in-out 1.2s infinite;
+}
+
+.anim-float-slow {
+  animation: auraFloat 5.6s ease-in-out 2s infinite;
