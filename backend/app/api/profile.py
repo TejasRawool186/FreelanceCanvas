@@ -49,6 +49,11 @@ async def update_profile(payload: ProfileUpdate, db: AsyncSession = Depends(get_
     await db.refresh(profile)
     return profile
 
+@router.get("/portfolio")
+async def get_portfolio():
+    studies = portfolio_store.list_all_case_studies()
+    return {"count": len(studies), "items": studies}
+
 @router.post("/portfolio")
 async def add_case_study(payload: dict):
     title = payload.get("title", "Past Project")
