@@ -69,7 +69,11 @@ export const ProposalDetail: React.FC<ProposalDetailProps> = ({ proposal, onPlay
           </span>
           <h2 style={{ fontSize: '20px', fontWeight: 800, marginTop: '2px' }}>{proposal.title}</h2>
           <div style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '4px' }}>
-            Estimated Total: <strong style={{ color: 'var(--text-main)' }}>${proposal.price_estimate?.toLocaleString() || '6,250'}</strong>
+            Estimated Total: <strong style={{ color: 'var(--text-main)' }}>
+              {proposal.price_estimate 
+                ? `$${proposal.price_estimate.toLocaleString()}` 
+                : (milestones.length > 0 ? `$${milestones.reduce((acc, m) => acc + (m.cost || 0), 0).toLocaleString()}` : 'Custom Scope')}
+            </strong>
           </div>
         </div>
 
