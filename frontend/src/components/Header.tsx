@@ -18,20 +18,20 @@ export const Header: React.FC<HeaderProps> = ({ onOpenNewBrief, online }) => {
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
         <div style={{
-          width: '36px',
-          height: '36px',
+          width: '38px',
+          height: '38px',
           borderRadius: '12px',
-          background: 'var(--accent-black)',
+          background: '#0F172A',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: '#FFF'
         }}>
-          <Sparkles size={18} color="var(--accent-pink)" />
+          <span className="font-chewy" style={{ fontSize: '24px', lineHeight: 1 }}>C</span>
         </div>
         <div>
-          <h1 style={{ fontSize: '18px', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-main)' }}>
-            Autonomiq <span style={{ fontWeight: 400, color: 'var(--text-muted)' }}>Freelance Desk</span>
+          <h1 className="font-chewy" style={{ fontSize: '24px', color: '#0F172A', margin: 0, letterSpacing: '0.02em' }}>
+            Autonomiq <span className="font-fredoka" style={{ fontSize: '16px', fontWeight: 600, color: '#64748B' }}>Freelance Desk</span>
           </h1>
         </div>
       </div>
@@ -42,29 +42,31 @@ export const Header: React.FC<HeaderProps> = ({ onOpenNewBrief, online }) => {
           alignItems: 'center',
           gap: '8px',
           padding: '6px 14px',
-          borderRadius: 'var(--radius-pill)',
-          background: online ? 'var(--pastel-green)' : '#FEE2E2',
+          borderRadius: '999px',
+          background: online ? '#DCFCE7' : '#FEE2E2',
           fontSize: '12px',
-          fontWeight: 600,
-          color: online ? 'var(--pastel-green-dark)' : '#991B1B'
+          fontWeight: 700,
+          color: online ? '#15803D' : '#991B1B'
         }}>
           <Radio size={14} className={online ? 'pulse-dot' : ''} />
           <span>{online ? 'Ollama & Qdrant Live' : 'Connecting Engine...'}</span>
         </div>
 
         <button
+          id="header-ingest-btn"
           onClick={onOpenNewBrief}
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            backgroundColor: 'var(--accent-pink)',
-            color: '#FFF',
-            padding: '10px 20px',
-            borderRadius: 'var(--radius-pill)',
-            fontWeight: 700,
+            backgroundColor: '#00A3FF',
+            color: '#000000',
+            padding: '10px 22px',
+            borderRadius: '8px',
+            fontWeight: 800,
             fontSize: '13px',
-            boxShadow: 'var(--shadow-sm)'
+            boxShadow: '0 4px 12px rgba(0, 163, 255, 0.3)',
+            cursor: 'pointer'
           }}
         >
           <Plus size={16} strokeWidth={2.5} />
