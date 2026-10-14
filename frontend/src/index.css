@@ -125,3 +125,27 @@ input, textarea, select {
   background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
 }
+
+/* Blueprint Dark Grid */
+.bg-blueprint-grid {
+  background-color: #070D1E;
+  background-image: 
+    linear-gradient(to right, rgba(0, 163, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 163, 255, 0.09) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Scotch Tape Style */
+.scotch-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 54px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(2px);
+  border-left: 2px dashed rgba(0, 0, 0, 0.12);
+  border-right: 2px dashed rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  z-index: 10;
