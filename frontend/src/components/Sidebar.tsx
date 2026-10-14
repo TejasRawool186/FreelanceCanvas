@@ -4,9 +4,11 @@ import { Inbox, FileText, Briefcase, Users, Headphones, LogOut } from 'lucide-re
 interface SidebarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  onGoToLanding?: () => void;
+  onSignOut?: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onGoToLanding, onSignOut }) => {
   const navItems = [
     { id: 'briefs', label: 'Briefs & RFPs', icon: Inbox },
     { id: 'proposals', label: 'Proposals', icon: FileText },
@@ -27,7 +29,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
       minHeight: '100vh'
     }}>
       <div>
-        <div style={{ padding: '0 12px 28px 12px' }}>
+        <div style={{ padding: '0 12px 28px 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{
             fontSize: '10px',
             textTransform: 'uppercase',
@@ -37,6 +39,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
           }}>
             Autonomous Workspace
           </span>
+          {onGoToLanding && (
+            <button
+              id="sidebar-home-link"
+              onClick={onGoToLanding}
+              title="Return to Public Landing Page"
+              style={{ fontSize: '11px', color: 'var(--accent-pink)', fontWeight: 700 }}
+            >
+              Public View
+            </button>
+          )}
         </div>
 
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -46,6 +58,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
             return (
               <button
                 key={item.id}
+                id={`sidebar-tab-${item.id}`}
                 onClick={() => setActiveTab(item.id)}
                 style={{
                   display: 'flex',
@@ -69,15 +82,39 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
         </nav>
       </div>
 
-      <div style={{
-        padding: '16px',
-        backgroundColor: 'rgba(255, 255, 255, 0.05)',
-        borderRadius: 'var(--radius-lg)',
-        fontSize: '12px',
-        color: '#9CA3AF'
-      }}>
-        <div style={{ fontWeight: 700, color: '#FFF', marginBottom: '4px' }}>Touch Grass Mode</div>
-        <p style={{ fontSize: '11px', lineHeight: 1.4 }}>Background synthesis active. Walk away and review briefs on mobile audio.</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div style={{
+          padding: '16px',
+          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          borderRadius: 'var(--radius-lg)',
+          fontSize: '12px',
+          color: '#9CA3AF'
+        }}>
+          <div style={{ fontWeight: 700, color: '#FFF', marginBottom: '4px' }}>Touch Grass Mode</div>
+          <p style={{ fontSize: '11px', lineHeight: 1.4 }}>Background synthesis active. Walk away and review briefs on mobile audio.</p>
+        </div>
+
+        {onSignOut && (
+          <button
+            id="sidebar-signout-btn"
+            onClick={onSignOut}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              padding: '10px 14px',
+              borderRadius: 'var(--radius-md)',
+              backgroundColor: 'rgba(239, 68, 68, 0.08)',
+              color: '#F87171',
+              fontSize: '12px',
+              fontWeight: 600,
+              width: '100%'
+            }}
+          >
+            <LogOut size={16} />
+            <span>Sign Out Session</span>
+          </button>
+        )}
       </div>
     </aside>
   );
