@@ -82,3 +82,15 @@ class PortfolioVectorStore:
             return [r.payload for r in records if r.payload]
         except Exception:
             return []
+
+    def list_all_case_studies(self) -> List[Dict[str, Any]]:
+        try:
+            records, _ = self.client.scroll(
+                collection_name=settings.QDRANT_COLLECTION,
+                limit=100,
+                with_payload=True
+            )
+            return [r.payload for r in records if r.payload]
+        except Exception as e:
+            print(f"[Qdrant List Error]: {e}")
+            return []
