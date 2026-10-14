@@ -76,5 +76,3 @@ python scripts/seed_profile.py
 python scripts/run_all.py
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-<!-- Local LLM inference recommendations -->
