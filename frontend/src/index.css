@@ -101,3 +101,27 @@ input, textarea, select {
 .pulse-dot {
   animation: pulseGlow 2s infinite ease-in-out;
 }
+
+/* ============================================================
+   AURA VISUAL-COLLABORAT THEME STYLES (Chewy + Fredoka + Doodle)
+   ============================================================ */
+
+.font-chewy {
+  font-family: 'Chewy', cursive, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.font-fredoka {
+  font-family: 'Fredoka', sans-serif;
+}
+
+.font-hand {
+  font-family: 'Patrick Hand', cursive, sans-serif;
+}
+
+/* Canvas Light Dot Grid */
+.bg-canvas-dots {
+  background-color: #FFFFFF;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
