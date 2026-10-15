@@ -8,14 +8,28 @@ import { NewBriefModal } from './components/NewBriefModal';
 import { PortfolioManager } from './components/PortfolioManager';
 import { AudioPlayerWidget } from './components/AudioPlayerWidget';
 import { TimelineRail } from './components/TimelineRail';
+import { LandingPage } from './components/LandingPage';
+import { LoginPage } from './components/LoginPage';
+import { RegisterPage } from './components/RegisterPage';
 import { Opportunity, Proposal, FreelancerProfile } from './types';
 
+type ViewMode = 'landing' | 'login' | 'register' | 'workspace';
+
 export const App: React.FC = () => {
+  const [view, setView] = useState<ViewMode>(() => {
+    const savedUser = localStorage.getItem('autonomiq_user');
+    return savedUser ? 'workspace' : 'landing';
+  });
+  const [currentUser, setCurrentUser] = useState<string | null>(() => {
+    return localStorage.getItem('autonomiq_user');
+  });
+
   const [activeTab, setActiveTab] = useState('briefs');
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [selectedOppId, setSelectedOppId] = useState<string | null>(null);
   const [proposal, setProposal] = useState<Proposal | null>(null);
   const [profile, setProfile] = useState<FreelancerProfile | null>(null);
+  const [caseStudyCount, setCaseStudyCount] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeAudio, setActiveAudio] = useState<string | null>(null);
   const [online, setOnline] = useState(true);
@@ -31,7 +45,7 @@ export const App: React.FC = () => {
         }
       }
     } catch (e) {
-      console.error(e);
+      console.error('Failed to fetch opportunities:', e);
     }
   };
 
@@ -47,7 +61,7 @@ export const App: React.FC = () => {
         }
       }
     } catch (e) {
-      console.error(e);
+      console.error('Failed to fetch proposal:', e);
     }
   };
 
@@ -58,13 +72,26 @@ export const App: React.FC = () => {
         setProfile(await res.json());
       }
     } catch (e) {
-      console.error(e);
+      console.error('Failed to fetch profile:', e);
+    }
+  };
+
+  const fetchPortfolioCount = async () => {
+    try {
+      const res = await fetch('/api/profile/portfolio');
+      if (res.ok) {
+        const data = await res.json();
+        setCaseStudyCount(data.count ?? (data.items ? data.items.length : 0));
+      }
+    } catch (e) {
+      console.error('Failed to fetch portfolio count:', e);
     }
   };
 
   useEffect(() => {
     fetchOpportunities();
     fetchProfile();
+    fetchPortfolioCount();
     const interval = setInterval(fetchOpportunities, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -88,7 +115,7 @@ export const App: React.FC = () => {
         setSelectedOppId(newOpp.id);
       }
     } catch (e) {
-      console.error(e);
+      console.error('Failed to create brief:', e);
     }
   };
 
@@ -103,33 +130,126 @@ export const App: React.FC = () => {
         setProfile(await res.json());
       }
     } catch (e) {
-      console.error(e);
+      console.error('Failed to update rate:', e);
     }
   };
 
   const handleAddCaseStudy = async (title: string, content: string, tech_stack: string[]) => {
     try {
-      await fetch('/api/profile/portfolio', {
+      const res = await fetch('/api/profile/portfolio', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, content, tech_stack })
       });
+      if (res.ok) {
+        fetchPortfolioCount();
+      }
     } catch (e) {
-      console.error(e);
+      console.error('Failed to index case study:', e);
     }
   };
 
+  const handleLoginSuccess = (email: string) => {
+    localStorage.setItem('autonomiq_user', email);
+    setCurrentUser(email);
+    setView('workspace');
+  };
+
+  const handleRegisterSuccess = async (data: {
+    fullName: string;
+    title: string;
+    hourlyRate: number;
+    email: string;
+    skills: string;
+    bio: string;
+  }) => {
+    try {
+      const res = await fetch('/api/profile', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          full_name: data.fullName,
+          title: data.title,
+          hourly_rate: data.hourlyRate,
+          skills: data.skills,
+          bio: data.bio
+        })
+      });
+      if (res.ok) {
+        setProfile(await res.json());
+      }
+    } catch (e) {
+      console.error('Error updating profile on registration:', e);
+    }
+
+    localStorage.setItem('autonomiq_user', data.email);
+    setCurrentUser(data.email);
+    setView('workspace');
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('autonomiq_user');
+    setCurrentUser(null);
+    setView('landing');
+  };
+
+  // Render Public Landing Page
+  if (view === 'landing') {
+    return (
+      <LandingPage
+        onNavigateLogin={() => setView('login')}
+        onNavigateRegister={() => setView('register')}
+        onLaunchWorkspace={() => setView('workspace')}
+        isLoggedIn={Boolean(currentUser)}
+        freelancerName={profile?.full_name}
+      />
+    );
+  }
+
+  // Render Login Page
+  if (view === 'login') {
+    return (
+      <LoginPage
+        onLoginSuccess={handleLoginSuccess}
+        onNavigateRegister={() => setView('register')}
+        onNavigateHome={() => setView('landing')}
+      />
+    );
+  }
+
+  // Render Register Page
+  if (view === 'register') {
+    return (
+      <RegisterPage
+        onRegisterSuccess={handleRegisterSuccess}
+        onNavigateLogin={() => setView('login')}
+        onNavigateHome={() => setView('landing')}
+      />
+    );
+  }
+
+  // Render Authenticated Consultant Workspace
   const activeOpp = opportunities.find(o => o.id === selectedOppId);
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-canvas)' }}>
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        onGoToLanding={() => setView('landing')}
+        onSignOut={handleSignOut}
+      />
 
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Header onOpenNewBrief={() => setIsModalOpen(true)} online={online} />
 
         <div style={{ padding: '32px', flex: 1 }}>
-          <BentoMetrics opportunities={opportunities} proposals={proposal ? [proposal] : []} profile={profile} />
+          <BentoMetrics
+            opportunities={opportunities}
+            proposals={proposal ? [proposal] : []}
+            profile={profile}
+            caseStudyCount={caseStudyCount}
+          />
 
           {activeTab === 'briefs' && (
             <>
