@@ -1,6 +1,7 @@
 export interface Opportunity {
   id: string;
   client_id?: string;
+  company?: string;
   title: string;
   raw_content: string;
   source_type: string;
