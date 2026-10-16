@@ -1,5 +1,16 @@
 import React from 'react';
-import { Inbox, FileText, Briefcase, Users, Headphones, LogOut } from 'lucide-react';
+import { 
+  Inbox, 
+  FileText, 
+  Briefcase, 
+  Users, 
+  Headphones, 
+  LogOut, 
+  Layout, 
+  Sparkles, 
+  ExternalLink,
+  Compass
+} from 'lucide-react';
 
 interface SidebarProps {
   activeTab: string;
@@ -8,50 +19,86 @@ interface SidebarProps {
   onSignOut?: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onGoToLanding, onSignOut }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ 
+  activeTab, 
+  setActiveTab, 
+  onGoToLanding, 
+  onSignOut 
+}) => {
   const navItems = [
+    { id: 'canvas', label: 'Canvas Board', icon: Layout, badge: 'Interactive' },
     { id: 'briefs', label: 'Briefs & RFPs', icon: Inbox },
     { id: 'proposals', label: 'Proposals', icon: FileText },
     { id: 'portfolio', label: 'Portfolio & RAG', icon: Briefcase },
-    { id: 'clients', label: 'Clients', icon: Users },
+    { id: 'clients', label: 'Client Intel', icon: Users },
     { id: 'audio', label: 'Audio Briefs', icon: Headphones }
   ];
 
   return (
     <aside style={{
       width: '260px',
-      backgroundColor: 'var(--bg-sidebar)',
-      color: '#FFF',
+      backgroundColor: '#FFFFFF',
+      borderRight: '2px solid #000000',
+      color: '#0F172A',
       padding: '24px 16px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      minHeight: '100vh'
+      minHeight: '100vh',
+      fontFamily: "'Fredoka', sans-serif"
     }}>
       <div>
-        <div style={{ padding: '0 12px 28px 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{
-            fontSize: '10px',
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-            color: '#9CA3AF',
-            fontWeight: 700
-          }}>
-            Autonomous Workspace
-          </span>
+        {/* Workspace Brand Header */}
+        <div style={{ 
+          padding: '0 8px 24px 8px', 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center',
+          borderBottom: '1.5px dashed #CBD5E1',
+          marginBottom: '20px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              backgroundColor: '#FFFFFF',
+              border: '2px solid #000000',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '1.5px 1.5px 0px #000000'
+            }}>
+              <span className="font-chewy" style={{ fontSize: '15px', lineHeight: 1 }}>FC</span>
+            </div>
+            <span className="font-chewy" style={{ fontSize: '18px', color: '#0F172A', letterSpacing: '0.02em' }}>
+              FreelanceCanvas
+            </span>
+          </div>
+
           {onGoToLanding && (
             <button
               id="sidebar-home-link"
               onClick={onGoToLanding}
               title="Return to Public Landing Page"
-              style={{ fontSize: '11px', color: 'var(--accent-pink)', fontWeight: 700 }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px',
+                fontSize: '11px',
+                fontWeight: 800,
+                color: '#0099FF',
+                cursor: 'pointer'
+              }}
             >
-              Public View
+              <span>Public</span>
+              <ExternalLink size={12} />
             </button>
           )}
         </div>
 
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+        {/* Navigation Tabs */}
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = activeTab === item.id;
@@ -63,35 +110,63 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onGoT
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
-                  padding: '12px 14px',
-                  borderRadius: 'var(--radius-md)',
-                  backgroundColor: active ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
-                  color: active ? '#FFF' : '#9CA3AF',
-                  fontSize: '13px',
-                  fontWeight: active ? 700 : 500,
+                  justifyContent: 'space-between',
+                  padding: '11px 14px',
+                  borderRadius: '10px',
+                  backgroundColor: active ? '#0099FF' : 'transparent',
+                  color: active ? '#000000' : '#475569',
+                  border: active ? '2px solid #000000' : '2px solid transparent',
+                  boxShadow: active ? '2px 2px 0px #000000' : 'none',
+                  fontSize: '14px',
+                  fontWeight: active ? 800 : 600,
                   textAlign: 'left',
-                  width: '100%'
+                  width: '100%',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
                 }}
               >
-                <Icon size={18} color={active ? 'var(--accent-pink)' : '#9CA3AF'} />
-                <span>{item.label}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <Icon size={18} strokeWidth={2.5} color={active ? '#000000' : '#64748B'} />
+                  <span>{item.label}</span>
+                </div>
+                {item.badge && (
+                  <span style={{
+                    fontSize: '10px',
+                    fontWeight: 800,
+                    backgroundColor: active ? '#FFFFFF' : '#DCFCE7',
+                    color: active ? '#000000' : '#166534',
+                    padding: '2px 6px',
+                    borderRadius: '999px',
+                    border: '1px solid rgba(0,0,0,0.1)'
+                  }}>
+                    {item.badge}
+                  </span>
+                )}
               </button>
             );
           })}
         </nav>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-        <div style={{
+      {/* Bottom Sticky Note Card */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+        <div className="sticky-note" style={{
           padding: '16px',
-          backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          borderRadius: 'var(--radius-lg)',
+          backgroundColor: '#FEF08A',
+          border: '1.5px solid #000000',
+          borderRadius: '8px',
           fontSize: '12px',
-          color: '#9CA3AF'
+          color: '#854D0E',
+          boxShadow: '2px 2px 0px #000000'
         }}>
-          <div style={{ fontWeight: 700, color: '#FFF', marginBottom: '4px' }}>Touch Grass Mode</div>
-          <p style={{ fontSize: '11px', lineHeight: 1.4 }}>Background synthesis active. Walk away and review briefs on mobile audio.</p>
+          <div className="scotch-tape" style={{ width: '40px', height: '14px', top: '-8px' }} />
+          <div style={{ fontWeight: 800, color: '#0F172A', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Sparkles size={14} color="#0099FF" />
+            <span>Autonomous Engine</span>
+          </div>
+          <p style={{ fontSize: '11px', lineHeight: 1.4, margin: 0 }}>
+            Qdrant vector collection active. Automatic background RFP proposal drafting ready.
+          </p>
         </div>
 
         {onSignOut && (
@@ -101,18 +176,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onGoT
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
-              padding: '10px 14px',
-              borderRadius: 'var(--radius-md)',
-              backgroundColor: 'rgba(239, 68, 68, 0.08)',
-              color: '#F87171',
-              fontSize: '12px',
-              fontWeight: 600,
-              width: '100%'
+              justifyContent: 'center',
+              gap: '8px',
+              padding: '10px',
+              borderRadius: '8px',
+              border: '2px solid #000000',
+              backgroundColor: '#FFFFFF',
+              color: '#EF4444',
+              fontSize: '13px',
+              fontWeight: 800,
+              boxShadow: '2px 2px 0px #000000',
+              cursor: 'pointer'
             }}
           >
-            <LogOut size={16} />
-            <span>Sign Out Session</span>
+            <LogOut size={16} strokeWidth={2.5} />
+            <span>Sign Out</span>
           </button>
         )}
       </div>
