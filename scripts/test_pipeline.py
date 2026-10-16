@@ -1,5 +1,9 @@
 import asyncio
+import sys
 import httpx
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 async def test():
     print("🧪 Testing Autonomiq Freelance Desk Pipeline...")
