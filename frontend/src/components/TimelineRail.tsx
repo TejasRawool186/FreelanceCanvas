@@ -24,28 +24,48 @@ export const TimelineRail: React.FC<TimelineRailProps> = ({ status }) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '16px 24px',
-      backgroundColor: '#FFF',
-      borderRadius: 'var(--radius-xl)',
+      padding: '14px 24px',
+      backgroundColor: '#FFFFFF',
+      borderRadius: '12px',
+      border: '2px solid #000000',
+      boxShadow: '3px 3px 0px #000000',
       marginBottom: '24px',
-      boxShadow: 'var(--shadow-sm)'
+      fontFamily: "'Fredoka', sans-serif"
     }}>
       {steps.map((s, i) => {
         const active = getStepActive(i);
         return (
           <React.Fragment key={s.id}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              {active ? (
-                <CheckCircle2 size={16} color="var(--pastel-green-dark)" />
-              ) : (
-                <Circle size={16} color="#9CA3AF" />
-              )}
-              <span style={{ fontSize: '12px', fontWeight: active ? 700 : 500, color: active ? 'var(--text-main)' : '#9CA3AF' }}>
+              <div style={{
+                width: '22px',
+                height: '22px',
+                borderRadius: '50%',
+                backgroundColor: active ? '#DCFCE7' : '#F1F5F9',
+                border: '1.5px solid #000000',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: active ? '#166534' : '#94A3B8'
+              }}>
+                {active ? (
+                  <CheckCircle2 size={14} strokeWidth={2.5} />
+                ) : (
+                  <Circle size={10} />
+                )}
+              </div>
+              <span style={{ fontSize: '13px', fontWeight: active ? 800 : 600, color: active ? '#0F172A' : '#64748B' }}>
                 {s.label}
               </span>
             </div>
             {i < steps.length - 1 && (
-              <div style={{ flex: 1, height: '2px', backgroundColor: active ? 'var(--pastel-green)' : 'var(--border-subtle)', margin: '0 12px' }} />
+              <div style={{
+                flex: 1,
+                height: '3px',
+                backgroundColor: active ? '#0099FF' : '#E2E8F0',
+                borderRadius: '2px',
+                margin: '0 12px'
+              }} />
             )}
           </React.Fragment>
         );
