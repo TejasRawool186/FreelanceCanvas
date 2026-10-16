@@ -11,7 +11,9 @@ import { TimelineRail } from './components/TimelineRail';
 import { LandingPage } from './components/LandingPage';
 import { LoginPage } from './components/LoginPage';
 import { RegisterPage } from './components/RegisterPage';
+import { CanvasBoard } from './components/CanvasBoard';
 import { Opportunity, Proposal, FreelancerProfile } from './types';
+import { Users, Headphones, Play, Sparkles, Building2, Globe, ShieldCheck } from 'lucide-react';
 
 type ViewMode = 'landing' | 'login' | 'register' | 'workspace';
 
@@ -24,7 +26,7 @@ export const App: React.FC = () => {
     return localStorage.getItem('autonomiq_user');
   });
 
-  const [activeTab, setActiveTab] = useState('briefs');
+  const [activeTab, setActiveTab] = useState('canvas');
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [selectedOppId, setSelectedOppId] = useState<string | null>(null);
   const [proposal, setProposal] = useState<Proposal | null>(null);
@@ -113,6 +115,7 @@ export const App: React.FC = () => {
         const newOpp = await res.json();
         setOpportunities(prev => [newOpp, ...prev]);
         setSelectedOppId(newOpp.id);
+        setActiveTab('briefs');
       }
     } catch (e) {
       console.error('Failed to create brief:', e);
@@ -232,7 +235,7 @@ export const App: React.FC = () => {
   const activeOpp = opportunities.find(o => o.id === selectedOppId);
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-canvas)' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F8F9FA' }}>
       <Sidebar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -250,6 +253,10 @@ export const App: React.FC = () => {
             profile={profile}
             caseStudyCount={caseStudyCount}
           />
+
+          {activeTab === 'canvas' && (
+            <CanvasBoard />
+          )}
 
           {activeTab === 'briefs' && (
             <>
@@ -278,20 +285,135 @@ export const App: React.FC = () => {
           )}
 
           {activeTab === 'clients' && (
-            <div style={{ backgroundColor: '#FFF', padding: '32px', borderRadius: 'var(--radius-xl)' }}>
-              <h2 style={{ fontSize: '18px', fontWeight: 800 }}>Client Contacts & Intel</h2>
-              <p style={{ color: 'var(--text-muted)', marginTop: '8px', fontSize: '13px' }}>
-                Client background intelligence gathered via autonomous SerpApi reconnaissance.
-              </p>
+            <div className="card-collab" style={{ padding: '32px', position: 'relative' }}>
+              <div className="scotch-tape" style={{ width: '60px', height: '20px', top: '-11px' }} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                <div>
+                  <h2 className="font-chewy" style={{ fontSize: '26px', margin: 0, letterSpacing: '0.02em' }}>
+                    Client Contacts & Autonomous Recon
+                  </h2>
+                  <p style={{ color: '#64748B', marginTop: '4px', fontSize: '13px' }}>
+                    Background intelligence gathered via autonomous SerpApi reconnaissance & public signals.
+                  </p>
+                </div>
+                <span className="tag-pill-free">
+                  <ShieldCheck size={14} /> Autonomous Recon Active
+                </span>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+                {[
+                  {
+                    company: 'FleetPulse Global',
+                    type: 'Logistics SaaS',
+                    status: 'High Budget RFP ($45k+)',
+                    intel: 'Migrating legacy monolith to FastAPI microservices. CTO values automated test coverage and sub-50ms latency.',
+                    bg: '#BBF7D0',
+                    text: '#166534'
+                  },
+                  {
+                    company: 'DataStream Cloud',
+                    type: 'Fintech Analytics',
+                    status: 'Active RFP Review',
+                    intel: 'Requires real-time streaming telemetry and SOC2 compliant audit logging.',
+                    bg: '#BAE6FD',
+                    text: '#0369A1'
+                  },
+                  {
+                    company: 'HealthGrid Solutions',
+                    type: 'Digital Health',
+                    status: 'Follow-up Scheduled',
+                    intel: 'Looking for senior architect to guide HIPAA-compliant vector search for medical records.',
+                    bg: '#FEF08A',
+                    text: '#854D0E'
+                  }
+                ].map((client, idx) => (
+                  <div key={idx} className="sticky-note" style={{
+                    backgroundColor: client.bg,
+                    border: '2px solid #000',
+                    borderRadius: '12px',
+                    padding: '20px',
+                    boxShadow: '3px 3px 0px #000'
+                  }}>
+                    <div className="scotch-tape" style={{ width: '40px', height: '14px', top: '-8px' }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                      <Building2 size={18} color="#000" />
+                      <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#000', margin: 0 }}>{client.company}</h3>
+                    </div>
+                    <div style={{ fontSize: '11px', fontWeight: 700, color: client.text, textTransform: 'uppercase', marginBottom: '8px' }}>
+                      {client.type} • {client.status}
+                    </div>
+                    <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#1E293B', margin: 0 }}>
+                      {client.intel}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
           {activeTab === 'audio' && (
-            <div style={{ backgroundColor: '#FFF', padding: '32px', borderRadius: 'var(--radius-xl)' }}>
-              <h2 style={{ fontSize: '18px', fontWeight: 800 }}>Executive Audio Briefings</h2>
-              <p style={{ color: 'var(--text-muted)', marginTop: '8px', fontSize: '13px' }}>
-                Generated audio executive summaries ready for offline review.
-              </p>
+            <div className="card-collab" style={{ padding: '32px', position: 'relative' }}>
+              <div className="scotch-tape" style={{ width: '60px', height: '20px', top: '-11px' }} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                <div>
+                  <h2 className="font-chewy" style={{ fontSize: '26px', margin: 0, letterSpacing: '0.02em' }}>
+                    Executive Audio Briefings Library
+                  </h2>
+                  <p style={{ color: '#64748B', marginTop: '4px', fontSize: '13px' }}>
+                    Autonomous Edge-TTS summaries ready for away-mode mobile listening.
+                  </p>
+                </div>
+                <span className="tag-pill-popular">
+                  <Headphones size={14} /> Touch Grass Mode
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                {[
+                  {
+                    title: 'FleetPulse Global: Microservices Scope & Timeline',
+                    duration: '4 min 12 sec',
+                    date: 'Today, 10:45 AM',
+                    desc: 'High-level synthesis covering milestone breakdown, estimated 160 billable hours, and risk register.'
+                  },
+                  {
+                    title: 'HealthGrid: HIPAA Vector Retrieval Proposal Briefing',
+                    duration: '3 min 20 sec',
+                    date: 'Yesterday',
+                    desc: 'Executive summary detailing Qdrant self-hosted deployment and role-based access control.'
+                  }
+                ].map((brief, idx) => (
+                  <div key={idx} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '16px 20px',
+                    borderRadius: '12px',
+                    border: '2px solid #000',
+                    backgroundColor: '#FFFFFF',
+                    boxShadow: '2px 2px 0px #000'
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                      <button
+                        onClick={() => setActiveAudio('demo_audio.mp3')}
+                        className="btn-collab-primary"
+                        style={{ width: '42px', height: '42px', padding: 0, borderRadius: '50%' }}
+                      >
+                        <Play size={18} fill="#000" />
+                      </button>
+                      <div>
+                        <h4 style={{ fontSize: '15px', fontWeight: 800, color: '#0F172A', margin: '0 0 4px 0' }}>{brief.title}</h4>
+                        <p style={{ fontSize: '12px', color: '#64748B', margin: 0 }}>{brief.desc}</p>
+                      </div>
+                    </div>
+                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                      <div style={{ fontSize: '12px', fontWeight: 700, color: '#0099FF' }}>{brief.duration}</div>
+                      <div style={{ fontSize: '11px', color: '#94A3B8' }}>{brief.date}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
