@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FreelancerProfile } from '../types';
-import { Layers, Plus, Save } from 'lucide-react';
+import { Layers, Plus, Save, Sparkles, Database } from 'lucide-react';
 
 interface PortfolioManagerProps {
   profile: FreelancerProfile | null;
@@ -31,77 +31,111 @@ export const PortfolioManager: React.FC<PortfolioManagerProps> = ({ profile, onU
   };
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-      <div style={{ backgroundColor: '#FFF', borderRadius: 'var(--radius-xl)', padding: '28px', boxShadow: 'var(--shadow-sm)' }}>
-        <h2 style={{ fontSize: '16px', fontWeight: 800, marginBottom: '16px' }}>Freelancer Rate Card & Bio</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+      
+      {/* Rate Card & Bio Panel */}
+      <div className="card-collab" style={{ padding: '28px', position: 'relative' }}>
+        <div className="scotch-tape" style={{ width: '50px', height: '18px', top: '-10px' }} />
+        
+        <h2 className="font-chewy" style={{ fontSize: '22px', margin: '0 0 16px 0', letterSpacing: '0.02em', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Sparkles size={20} color="#0099FF" /> Freelancer Rate Card & Bio
+        </h2>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div>
-            <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)' }}>Target Hourly Rate ($)</label>
+            <label style={{ fontSize: '13px', fontWeight: 700, color: '#0F172A', display: 'block', marginBottom: '6px' }}>
+              Target Hourly Rate ($/hr)
+            </label>
             <input
               type="number"
               value={rate}
               onChange={(e) => setRate(Number(e.target.value))}
-              style={{ width: '100%', padding: '10px 14px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', marginTop: '4px' }}
+              className="input-collab"
             />
           </div>
+
           <div>
-            <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)' }}>Executive Bio & Philosophy</label>
+            <label style={{ fontSize: '13px', fontWeight: 700, color: '#0F172A', display: 'block', marginBottom: '6px' }}>
+              Executive Bio & Philosophy
+            </label>
             <textarea
               rows={4}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
-              style={{ width: '100%', padding: '10px 14px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', marginTop: '4px' }}
+              className="input-collab"
+              style={{ resize: 'vertical' }}
             />
           </div>
+
           <button
             onClick={handleSaveRate}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '10px', backgroundColor: 'var(--accent-black)', color: '#FFF', borderRadius: 'var(--radius-pill)', fontWeight: 700 }}
+            className="btn-collab-primary"
+            style={{ width: '100%', marginTop: '4px' }}
           >
-            <Save size={16} /> Save Settings
+            <Save size={16} strokeWidth={2.5} />
+            <span>Save Profile Settings</span>
           </button>
         </div>
       </div>
 
-      <div style={{ backgroundColor: '#FFF', borderRadius: 'var(--radius-xl)', padding: '28px', boxShadow: 'var(--shadow-sm)' }}>
-        <h2 style={{ fontSize: '16px', fontWeight: 800, marginBottom: '16px' }}>Index New Case Study into Qdrant</h2>
-        <form onSubmit={handleAddCase} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      {/* Index Case Study Panel */}
+      <div className="card-collab" style={{ padding: '28px', position: 'relative' }}>
+        <div className="scotch-tape" style={{ width: '50px', height: '18px', top: '-10px' }} />
+
+        <h2 className="font-chewy" style={{ fontSize: '22px', margin: '0 0 16px 0', letterSpacing: '0.02em', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Database size={20} color="#10B981" /> Index New Case Study into Qdrant
+        </h2>
+
+        <form onSubmit={handleAddCase} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           <div>
-            <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)' }}>Case Study Title</label>
+            <label style={{ fontSize: '13px', fontWeight: 700, color: '#0F172A', display: 'block', marginBottom: '6px' }}>
+              Case Study Title
+            </label>
             <input
               type="text"
               required
               value={csTitle}
               onChange={(e) => setCsTitle(e.target.value)}
               placeholder="e.g. Edge IoT Telemetry Pipeline"
-              style={{ width: '100%', padding: '10px 14px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', marginTop: '4px' }}
+              className="input-collab"
             />
           </div>
+
           <div>
-            <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)' }}>Tech Stack (comma-separated)</label>
+            <label style={{ fontSize: '13px', fontWeight: 700, color: '#0F172A', display: 'block', marginBottom: '6px' }}>
+              Tech Stack (comma-separated)
+            </label>
             <input
               type="text"
               value={csTech}
               onChange={(e) => setCsTech(e.target.value)}
               placeholder="FastAPI, Python, Docker, Qdrant"
-              style={{ width: '100%', padding: '10px 14px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', marginTop: '4px' }}
+              className="input-collab"
             />
           </div>
+
           <div>
-            <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)' }}>Project Scope & Results</label>
+            <label style={{ fontSize: '13px', fontWeight: 700, color: '#0F172A', display: 'block', marginBottom: '6px' }}>
+              Project Scope & Results
+            </label>
             <textarea
               required
               rows={3}
               value={csContent}
               onChange={(e) => setCsContent(e.target.value)}
               placeholder="Describe what you built and outcomes..."
-              style={{ width: '100%', padding: '10px 14px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', marginTop: '4px' }}
+              className="input-collab"
+              style={{ resize: 'vertical' }}
             />
           </div>
+
           <button
             type="submit"
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '10px', backgroundColor: 'var(--accent-indigo)', color: '#FFF', borderRadius: 'var(--radius-pill)', fontWeight: 700 }}
+            className="btn-collab-dark"
+            style={{ width: '100%', marginTop: '4px' }}
           >
-            <Plus size={16} /> Index Case Study
+            <Plus size={16} strokeWidth={2.5} />
+            <span>Index Vector Embedding</span>
           </button>
         </form>
       </div>
