@@ -10,7 +10,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 
 def main():
     print("=" * 60)
-    print("💼 Autonomiq Freelance Desk — Unified Runner")
+    print("💼 FreelanceCanvas — Unified Runner")
     print("=" * 60)
 
     print("\n[1/2] Starting Backend (FastAPI on Port 8010)...")
@@ -26,7 +26,7 @@ def main():
         backend_proc.wait()
         frontend_proc.wait()
     except KeyboardInterrupt:
-        print("\n🛑 Shutting down Autonomiq Freelance Desk services...")
+        print("\n🛑 Shutting down FreelanceCanvas services...")
         backend_proc.terminate()
         frontend_proc.terminate()
 

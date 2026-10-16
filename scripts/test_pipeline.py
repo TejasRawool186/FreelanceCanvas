@@ -6,7 +6,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 async def test():
-    print("🧪 Testing Autonomiq Freelance Desk Pipeline...")
+    print("🧪 Testing FreelanceCanvas Pipeline...")
     base_url = "http://localhost:8010"
 
     async with httpx.AsyncClient(timeout=60.0) as client:

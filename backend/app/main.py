@@ -11,8 +11,8 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(
-    title="Autonomiq Freelance Desk API",
-    description="Autonomous local-first AI workspace for solo developers & consultants.",
+    title="FreelanceCanvas API",
+    description="Visual collaborative AI workspace for solo developers & consultants.",
     version="1.0.0",
     lifespan=lifespan
 )
@@ -33,7 +33,7 @@ app.include_router(profile.router)
 @app.get("/")
 async def root():
     return {
-        "workspace": "Autonomiq Freelance Desk",
+        "workspace": "FreelanceCanvas",
         "status": "online",
         "docs_url": "/docs"
     }

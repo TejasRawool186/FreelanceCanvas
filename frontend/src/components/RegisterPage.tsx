@@ -280,7 +280,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="alex@autonomiq.dev"
+                  placeholder="alex@freelancecanvas.dev"
                   style={{
                     width: '100%',
                     padding: '10px 8px',

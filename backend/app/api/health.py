@@ -16,7 +16,7 @@ async def get_health():
 
     return {
         "status": "healthy",
-        "service": "Autonomiq Freelance Desk",
+        "service": "FreelanceCanvas",
         "version": "1.0.0",
         "ollama_connected": ollama_online,
         "ollama_model": settings.OLLAMA_MODEL,

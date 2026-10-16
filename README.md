@@ -1,26 +1,27 @@
-# Autonomiq Freelance Desk 💼
+# FreelanceCanvas 🎨💼
 
-> **Autonomous AI Workstation for Solo Developers, Consultants & Freelancers**  
-> *"Bid smarter. Research faster. Close clients while you touch grass."*
+> **Visual Collaborative AI Workstation for Solo Developers, Consultants & Freelancers**  
+> *"Brainstorm visually. Research faster. Close clients while you touch grass."*
 
 ---
 
 ## 🌟 Overview
 
-**Autonomiq Freelance Desk** is a standalone, local-first autonomous AI workspace tailored for freelancers and technical contractors. Built on the core durability and local-inference foundation of Autonomiq, it automates the most time-consuming, unbillable freelance chores:
+**FreelanceCanvas** is an interactive, visual-first whiteboard and autonomous AI workspace tailored for freelancers, solo developers, and technical consultants. Combining playful neo-brutalist collaborative canvas boards with local vector RAG and AI synthesis, it automates the most time-consuming, unbillable freelance chores:
 
-1. **RFP & Brief Ingestion**: Drops in client PDFs, Upwork project descriptions, or discovery call transcripts.
-2. **Client Reconnaissance**: Autonomous background search (SerpApi) on the client's company, tech stack, and market footprint.
-3. **Portfolio & Skills Matching**: Local vector RAG (Qdrant) searching your personal past projects, case studies, and rate cards.
-4. **Scope & Proposal Synthesis**: Local LLM reasoning (Gemma via Ollama) generating a complete proposal, Work Breakdown Structure (WBS), milestone schedule, and risk register.
-5. **Away Mode Audio Brief**: 2-3 minute ElevenLabs audio briefing so you can review client opportunities on the go.
+1. **Visual Brainstorming & Whiteboarding**: Interactive draggable sticky notes, phase workflows, and real-time team collaboration canvas.
+2. **RFP & Brief Ingestion**: Drops in client PDFs, Upwork project descriptions, or discovery call transcripts.
+3. **Client Reconnaissance**: Autonomous background search (SerpApi) on the client's company, tech stack, and market footprint.
+4. **Portfolio & Skills Matching**: Local vector RAG (Qdrant) searching your personal past projects, case studies, and rate cards.
+5. **Scope & Proposal Synthesis**: Local LLM reasoning (Gemma via Ollama) generating a complete proposal, Work Breakdown Structure (WBS), milestone schedule, and risk register.
+6. **Away Mode Audio Brief**: 2-3 minute ElevenLabs audio briefing so you can review client opportunities on the go.
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-Autonomiq_Freelance_Desk/
+FreelanceCanvas/
 ├── backend/                          # FastAPI REST API & LangGraph Engine
 │   ├── app/
 │   │   ├── api/                      # Endpoints: Briefs, Proposals, Profile, Health

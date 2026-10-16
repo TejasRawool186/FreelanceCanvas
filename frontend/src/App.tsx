@@ -19,11 +19,11 @@ type ViewMode = 'landing' | 'login' | 'register' | 'workspace';
 
 export const App: React.FC = () => {
   const [view, setView] = useState<ViewMode>(() => {
-    const savedUser = localStorage.getItem('autonomiq_user');
+    const savedUser = localStorage.getItem('freelancecanvas_user') || localStorage.getItem('autonomiq_user');
     return savedUser ? 'workspace' : 'landing';
   });
   const [currentUser, setCurrentUser] = useState<string | null>(() => {
-    return localStorage.getItem('autonomiq_user');
+    return localStorage.getItem('freelancecanvas_user') || localStorage.getItem('autonomiq_user');
   });
 
   const [activeTab, setActiveTab] = useState('canvas');
@@ -153,7 +153,7 @@ export const App: React.FC = () => {
   };
 
   const handleLoginSuccess = (email: string) => {
-    localStorage.setItem('autonomiq_user', email);
+    localStorage.setItem('freelancecanvas_user', email);
     setCurrentUser(email);
     setView('workspace');
   };
@@ -185,12 +185,13 @@ export const App: React.FC = () => {
       console.error('Error updating profile on registration:', e);
     }
 
-    localStorage.setItem('autonomiq_user', data.email);
+    localStorage.setItem('freelancecanvas_user', data.email);
     setCurrentUser(data.email);
     setView('workspace');
   };
 
   const handleSignOut = () => {
+    localStorage.removeItem('freelancecanvas_user');
     localStorage.removeItem('autonomiq_user');
     setCurrentUser(null);
     setView('landing');

@@ -45,7 +45,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
   };
 
   const handleDemoLogin = () => {
-    onLoginSuccess('consultant@autonomiq.dev');
+    onLoginSuccess('consultant@freelancecanvas.dev');
   };
 
   const handleForgotSubmit = (e: React.FormEvent) => {
