@@ -9,7 +9,10 @@ import {
   Layout, 
   Sparkles, 
   ExternalLink,
-  Compass
+  Compass,
+  Settings as SettingsIcon,
+  FolderKanban,
+  Receipt
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -28,10 +31,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const navItems = [
     { id: 'canvas', label: 'Canvas Board', icon: Layout, badge: 'Interactive' },
     { id: 'briefs', label: 'Briefs & RFPs', icon: Inbox },
+    { id: 'projects', label: 'Project Workspace', icon: FolderKanban, badge: 'Live Kanban' },
+    { id: 'invoicing', label: 'Invoices & Health', icon: Receipt, badge: 'Phase 9' },
     { id: 'proposals', label: 'Proposals', icon: FileText },
     { id: 'portfolio', label: 'Portfolio & RAG', icon: Briefcase },
     { id: 'clients', label: 'Client Intel', icon: Users },
-    { id: 'audio', label: 'Audio Briefs', icon: Headphones }
+    { id: 'audio', label: 'Audio Briefs', icon: Headphones },
+    { id: 'settings', label: 'Settings', icon: SettingsIcon }
   ];
 
   return (

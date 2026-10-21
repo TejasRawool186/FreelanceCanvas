@@ -1,12 +1,47 @@
 import React from 'react';
-import { Sparkles, Plus, Radio } from 'lucide-react';
+import { Sparkles, Plus, Radio, Activity } from 'lucide-react';
 
 interface HeaderProps {
   onOpenNewBrief: () => void;
   online: boolean;
+  engineStatus?: 'healthy' | 'degraded' | 'offline';
+  onOpenDiagnostics?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenNewBrief, online }) => {
+export const Header: React.FC<HeaderProps> = ({
+  onOpenNewBrief,
+  online,
+  engineStatus = 'healthy',
+  onOpenDiagnostics
+}) => {
+  const getBadgeStyle = () => {
+    switch (engineStatus) {
+      case 'healthy':
+        return {
+          bg: '#DCFCE7',
+          color: '#166534',
+          border: '#15803D',
+          text: 'Engine: Healthy (AI Live)'
+        };
+      case 'degraded':
+        return {
+          bg: '#FEF3C7',
+          color: '#92400E',
+          border: '#D97706',
+          text: 'Engine: Degraded (Fallbacks Active)'
+        };
+      default:
+        return {
+          bg: '#FEE2E2',
+          color: '#991B1B',
+          border: '#B91C1C',
+          text: 'Backend Offline'
+        };
+    }
+  };
+
+  const badge = getBadgeStyle();
+
   return (
     <header style={{
       display: 'flex',
@@ -39,22 +74,30 @@ export const Header: React.FC<HeaderProps> = ({ onOpenNewBrief, online }) => {
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          padding: '6px 14px',
-          borderRadius: '999px',
-          border: '1.5px solid #000000',
-          backgroundColor: online ? '#DCFCE7' : '#FEE2E2',
-          fontSize: '12px',
-          fontWeight: 800,
-          color: online ? '#166534' : '#991B1B',
-          boxShadow: '1.5px 1.5px 0px #000000'
-        }}>
-          <Radio size={14} className={online ? 'pulse-dot' : ''} />
-          <span>{online ? 'Ollama & Qdrant Live' : 'Connecting Engine...'}</span>
-        </div>
+        <button
+          type="button"
+          onClick={onOpenDiagnostics}
+          title="Click to view live subsystem telemetry and diagnostics"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '6px 14px',
+            borderRadius: '999px',
+            border: `1.5px solid #000000`,
+            backgroundColor: badge.bg,
+            fontSize: '12px',
+            fontWeight: 800,
+            color: badge.color,
+            boxShadow: '1.5px 1.5px 0px #000000',
+            cursor: 'pointer',
+            transition: 'transform 0.1s ease'
+          }}
+          className="hover:scale-105 active:scale-95"
+        >
+          <Activity size={14} className={engineStatus === 'healthy' ? 'pulse-dot' : ''} />
+          <span>{badge.text}</span>
+        </button>
 
         <button
           id="header-ingest-btn"

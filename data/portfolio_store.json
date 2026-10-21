@@ -1,0 +1,104 @@
+[
+  {
+    "doc_id": "seed_iot_telemetry",
+    "title": "High-Throughput IoT Telemetry & Anomaly Detection Pipeline",
+    "client_industry": "Logistics & Fleet Telematics",
+    "role": "Lead Systems Architect & Python Engineer",
+    "tech_stack": [
+      "Python",
+      "FastAPI",
+      "Redis",
+      "Docker",
+      "PostgreSQL"
+    ],
+    "summary": "Architected an event-driven telemetry ingestion engine processing 12,000 sensor packets/second from commercial freight vehicles with sub-40ms end-to-end latency.",
+    "outcomes": [
+      "Eliminated ingestion backpressure using Redis Stream distributed buffers",
+      "Reduced sensor anomaly detection false-positives by 48%",
+      "Deployed containerized microservice suite with 92% automated test coverage"
+    ],
+    "metrics": {
+      "throughput": "12,000 packets/sec",
+      "latency": "<40ms",
+      "uptime": "99.99%"
+    },
+    "testimonial_quote": "Delivered ahead of schedule; the architecture effortlessly handled our peak Black Friday fleet bursts.",
+    "link_url": "https://github.com/example/iot-telemetry-engine"
+  },
+  {
+    "doc_id": "seed_fintech_portal",
+    "title": "SOC2-Compliant Real-Time Algorithmic Trading Analytics Dashboard",
+    "client_industry": "Fintech & Quantitative Trading",
+    "role": "Senior Full-Stack Engineer",
+    "tech_stack": [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "WebSocket",
+      "TailwindCSS"
+    ],
+    "summary": "Designed a responsive real-time portfolio risk telemetry frontend streaming live orderbook depth and portfolio VaR analytics.",
+    "outcomes": [
+      "Engineered WebSocket multiplexing for 50+ concurrent financial instruments",
+      "Integrated canvas chart rendering maintaining stable 60 FPS under rapid tick updates",
+      "Passed rigorous third-party SOC2 Type II security audit with zero critical vulnerabilities"
+    ],
+    "metrics": {
+      "frame_rate": "60 FPS",
+      "data_sync": "<15ms",
+      "audit_score": "100% Pass"
+    },
+    "testimonial_quote": "The fastest trading interface our portfolio managers have ever operated.",
+    "link_url": "https://example.com/case-studies/algo-trading"
+  },
+  {
+    "doc_id": "4e5cdcb9-912a-46a0-9907-bdbc9fbeb65c",
+    "title": "Autonomous Billing & Stripe Invoicing Gateway",
+    "content": "Engineered idempotent payment reconciliation webhook handling for 250,000 monthly active subscribers.",
+    "summary": "Engineered idempotent payment reconciliation webhook handling for 250,000 monthly active subscribers.",
+    "tech_stack": [
+      "Python",
+      "FastAPI",
+      "Stripe",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "client_industry": "SaaS & Subscriptions",
+    "role": "Principal Backend Architect",
+    "outcomes": [
+      "Achieved zero duplicate charge incidents over 12 months",
+      "Automated failed dunning payment recovery recovering $180k ARR"
+    ],
+    "metrics": {
+      "dunning_recovery": "$180k ARR",
+      "webhook_latency": "<25ms"
+    },
+    "testimonial_quote": "Bulletproof billing infrastructure that never failed us.",
+    "link_url": "https://example.com/billing-gateway"
+  },
+  {
+    "doc_id": "b80d17f7-81be-45a5-a406-cf37fc69af68",
+    "title": "Autonomous Enterprise Billing Gateway",
+    "content": "Engineered idempotent payment reconciliation webhook handling for 250,000 monthly active subscribers.",
+    "summary": "Engineered idempotent payment reconciliation webhook handling for 250,000 monthly active subscribers.",
+    "tech_stack": [
+      "Python",
+      "FastAPI",
+      "Stripe",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "client_industry": "SaaS & Subscriptions",
+    "role": "Principal Backend Architect",
+    "outcomes": [
+      "Achieved zero duplicate charge incidents over 12 months",
+      "Automated failed dunning payment recovery recovering $180k ARR"
+    ],
+    "metrics": {
+      "dunning_recovery": "$220k ARR",
+      "webhook_latency": "<18ms"
+    },
+    "testimonial_quote": "Bulletproof billing infrastructure that never failed us.",
+    "link_url": "https://example.com/billing-gateway"
+  }
+]
